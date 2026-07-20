@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Events - MSET 2026</title>
+    <link rel="icon" type="image/png" href="assets/dsu.png">
+    <link rel="preload" as="image" href="assets/past-1.png">
+    <link rel="preload" as="image" href="assets/past-2.png">
+    <link rel="preload" as="image" href="assets/past-3.png">
+    <link rel="preload" as="image" href="assets/past-4.png">
+    <link rel="preload" as="image" href="assets/past-5.png">
+    <link rel="preload" as="image" href="assets/past-6.png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #001C4F, #126ee2);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: #FED501;
+        }
+        .page-content {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 40px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .page-content h2 {
+            color: #001C4F;
+            border-bottom: 2px solid #FF9F00;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .page-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Event Gallery */
+        .gallery-section {
+            max-width: 1220px;
+            margin: 50px auto 80px;
+            padding: 0 20px;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .gallery-section.ready {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            text-transform: uppercase;
+            color: #001C4F;
+            background: rgba(254, 213, 1, 0.12);
+            border-radius: 999px;
+            padding: 8px 18px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+            font-size: 0.85rem;
+        }
+
+        .gallery-header h2 {
+            font-size: 2.9rem;
+            margin: 0;
+            color: #111;
+            line-height: 1.05;
+        }
+
+        .gallery-header p {
+            max-width: 760px;
+            margin: 16px auto 0;
+            color: #515151;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .gallery-carousel-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            box-shadow: 0 30px 80px rgba(5, 29, 67, 0.12);
+            background: #000;
+        }
+
+        .gallery-carousel {
+            display: flex;
+            width: auto;
+            transition: transform 0.85s ease;
+        }
+
+        .gallery-slide {
+            position: relative;
+            flex: 0 0 100%;
+            overflow: hidden;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            display: block;
+            transform: scale(1);
+            transition: transform 10s ease;
+        }
+
+        .gallery-slide.active img {
+            animation: kenburns 14s ease-in-out forwards;
+        }
+
+        @keyframes kenburns {
+            0% { transform: scale(1) translateY(0); }
+            100% { transform: scale(1.08) translateY(-4%); }
+        }
+
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.42) 35%, rgba(0, 0, 0, 0.7) 100%);
+            pointer-events: none;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 32px;
+            left: 32px;
+            right: 32px;
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 500;
+            max-width: 620px;
+            z-index: 2;
+        }
+
+        .gallery-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+            transition: background 0.3s ease, transform 0.3s ease;
+            z-index: 5;
+        }
+
+        .gallery-btn:hover {
+            background: rgba(254, 213, 1, 0.95);
+            color: #001C4F;
+            transform: translateY(-50%) scale(1.04);
+        }
+
+        .gallery-btn.prev {
+            left: 24px;
+        }
+
+        .gallery-btn.next {
+            right: 24px;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 5;
+        }
+
+        .gallery-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.45);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .gallery-dot.active {
+            width: 18px;
+            height: 18px;
+            background: #FED501;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 40px;
+        }
+
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            box-shadow: 0 20px 50px rgba(8, 29, 64, 0.12);
+            background: #111;
+            border: 1px solid rgba(6, 38, 91, 0.06);
+            cursor: pointer;
+            min-height: 260px;
+            display: grid;
+            place-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px rgba(8, 29, 64, 0.18);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-card .card-caption {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            padding: 18px 20px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.78) 100%);
+            color: #fff;
+            font-size: 0.96rem;
+            line-height: 1.5;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-card:hover .card-caption {
+            opacity: 1;
+        }
+
+        .gallery-card.hidden {
+            display: none;
+        }
+
+        .gallery-footer {
+            text-align: center;
+            margin-top: 28px;
+        }
+
+        .load-more-btn {
+            border: none;
+            background: #001C4F;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 999px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .load-more-btn:hover {
+            background: #123a8b;
+            transform: translateY(-2px);
+        }
+
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.94);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            max-height: 100%;
+            display: grid;
+            gap: 18px;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            max-height: calc(100vh - 180px);
+            object-fit: contain;
+            border-radius: 24px;
+        }
+
+        .lightbox-caption {
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: center;
+            opacity: 0.95;
+        }
+
+        .lightbox-close,
+        .lightbox-nav {
+            position: absolute;
+            border: none;
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-nav:hover {
+            background: rgba(254,213,1,0.95);
+            color: #001C4F;
+            transform: scale(1.05);
+        }
+
+        .lightbox-close {
+            top: 20px;
+            right: 20px;
+            z-index: 3;
+        }
+
+        .lightbox-nav.prev {
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            z-index: 3;
+        }
+
+        .lightbox-nav.next {
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 3;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-slide { height: 350px; }
+            .gallery-header h2 { font-size: 2.5rem; }
+            .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 720px) {
+            .gallery-slide { height: 260px; }
+            .gallery-header h2 { font-size: 2.25rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-btn { width: 48px; height: 48px; }
+            .gallery-btn.prev { left: 14px; }
+            .gallery-btn.next { right: 14px; }
+            .slide-caption { left: 20px; right: 20px; bottom: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://www.dsuniversity.ac.in/images/DSU_Logo.png" alt="University Logo">
+        </div>
+        <div class="navbar-left">
+            <h2>DHANALAKSHMI SRINIVASAN UNIVERSITY</h2>
+            <p>Established Under The Tamil Nadu Private Universities Act, 2019</p>
+            <p>Tiruchirappalli - 621 112. Tamil Nadu, India.</p>
+        </div>
+        <div class="nav-links">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#topics">Conference Topics</a>
+            <a href="keydates.html">Key Dates</a>
+            <a href="submission.html">Submissions</a>
+            <a href="registration.html">Registration</a>
+            <a href="index.html#contact">Contact Us</a>
+        </div>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h1>Past Events</h1>
+        <p>MSET 2026 - Multidisciplinary Solutions for Emerging Trends</p>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+        <h2>MSET History</h2>
+        <p>The School of Engineering and Technology (SET) at DSU has a proud tradition of hosting impactful international conferences.</p>
+        <p>Our previous edition, <strong>MSET 2025</strong>, saw an incredible turnout of over 500 participants from across the globe. Keynotes from industry leaders and high-quality paper presentations marked the success of the event.</p>
+        <ul>
+            <li><strong>MSET 2025:</strong> Held in April 2025. Focused on bridging mechanical, electrical, and computer science domains.</li>
+        </ul>
+        <p>We are building upon the legacy of MSET 2025 to make MSET 2026 an even more enriching experience for all attendees.</p>
+    </div>
+
+    <section class="gallery-section" id="event-gallery">
+        <div class="gallery-header">
+            <span class="gallery-tag">Event Gallery</span>
+            <h2>Relive the best moments from our event.</h2>
+            <p>Explore highlights from MSET 2026 through a premium carousel and responsive gallery that feels polished and modern.</p>
+        </div>
+
+        <div class="gallery-carousel-wrap" id="gallery-carousel-wrap">
+            <div class="gallery-carousel" id="gallery-carousel">
+                <div class="gallery-slide active" data-caption="Opening ceremony with conference dignitaries.">
+                    <img src="assets/past-1.png" alt="Opening ceremony with conference dignitaries" loading="eager" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">Opening ceremony with conference dignitaries.</div>
+                </div>
+                <div class="gallery-slide" data-caption="Speakers delivering keynote presentations.">
+                    <img src="assets/past-2.png" alt="Speakers delivering keynote presentations" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">Speakers delivering keynote presentations.</div>
+                </div>
+                <div class="gallery-slide" data-caption="Interactive sessions and panel discussions.">
+                    <img src="assets/past-3.png" alt="Interactive sessions and panel discussions" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">Interactive sessions and panel discussions.</div>
+                </div>
+                <div class="gallery-slide" data-caption="Campus atmosphere during the event.">
+                    <img src="assets/past-4.png" alt="Campus atmosphere during the event" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">Campus atmosphere during the event.</div>
+                </div>
+                <div class="gallery-slide" data-caption="Audience engagement with live presentations.">
+                    <img src="assets/past-5.png" alt="Audience engagement with live presentations" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">Audience engagement with live presentations.</div>
+                </div>
+                <div class="gallery-slide" data-caption="Celebrations and awards at the conference.">
+                    <img src="assets/past-6.png" alt="Celebrations and awards at the conference" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">Celebrations and awards at the conference.</div>
+                </div>
+                <div class="gallery-slide" data-caption="MSET 2026 Conference Poster.">
+                    <img src="assets/mset1.png" alt="MSET 2026 Conference Poster" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">MSET 2026 Conference Poster.</div>
+                </div>
+                <div class="gallery-slide" data-caption="MSET 2026 Event Highlights.">
+                    <img src="assets/mset2.png" alt="MSET 2026 Event Highlights" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">MSET 2026 Event Highlights.</div>
+                </div>
+                <div class="gallery-slide" data-caption="MSET 2026 Conference Details.">
+                    <img src="assets/mset3.png" alt="MSET 2026 Conference Details" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">MSET 2026 Conference Details.</div>
+                </div>
+                <div class="gallery-slide" data-caption="MSET 2026 Call for Papers.">
+                    <img src="assets/mset4.png" alt="MSET 2026 Call for Papers" loading="lazy" decoding="async">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">MSET 2026 Call for Papers.</div>
+                </div>
+            </div>
+
+            <button class="gallery-btn prev" id="gallery-prev" aria-label="Previous slide">&#10094;</button>
+            <button class="gallery-btn next" id="gallery-next" aria-label="Next slide">&#10095;</button>
+            <div class="gallery-dots" id="gallery-dots" aria-label="Carousel pagination"></div>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+            <button type="button" class="gallery-card" data-index="0" data-src="assets/past-1.png" data-caption="Opening ceremony with conference dignitaries" data-alt="Opening ceremony with conference dignitaries">
+                <img src="assets/past-1.png" alt="Opening ceremony with conference dignitaries" loading="lazy" decoding="async">
+                <div class="card-caption">Opening ceremony with conference dignitaries</div>
+            </button>
+            <button type="button" class="gallery-card" data-index="1" data-src="assets/past-2.png" data-caption="Speakers delivering keynote presentations" data-alt="Speakers delivering keynote presentations">
+                <img src="assets/past-2.png" alt="Speakers delivering keynote presentations" loading="lazy" decoding="async">
+                <div class="card-caption">Speakers delivering keynote presentations</div>
+            </button>
+            <button type="button" class="gallery-card" data-index="2" data-src="assets/tac.jpg" data-caption="Audience engagement with live presentations" data-alt="Audience engagement with live presentations">
+                <img src="assets/tac.jpg" alt="Audience engagement with live presentations" loading="lazy" decoding="async">
+                <div class="card-caption">Audience engagement with live presentations</div>
+            </button>
+            <button type="button" class="gallery-card" data-index="3" data-src="assets/past-4.png" data-caption="Celebrations and awards at the conference" data-alt="Celebrations and awards at the conference">
+                <img src="assets/past-4.png" alt="Celebrations and awards at the conference" loading="lazy" decoding="async">
+                <div class="card-caption">Celebrations and awards at the conference</div>
+            </button>
+            <button type="button" class="gallery-card" data-index="4" data-src="assets/past-3.png" data-caption="Stage setup and live event action" data-alt="Stage setup and live event action">
+                <img src="assets/past-3.png" alt="Stage setup and live event action" loading="lazy" decoding="async">
+                <div class="card-caption">Stage setup and live event action</div>
+            </button>
+            <button type="button" class="gallery-card" data-index="5" data-src="assets/past-5.png" data-caption="Networking moments at the conference" data-alt="Networking moments at the conference">
+                <img src="assets/past-5.png" alt="Networking moments at the conference" loading="lazy" decoding="async">
+                <div class="card-caption">Networking moments at the conference</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="6" data-src="assets/past-6.png" data-caption="Closing sessions and award recognition" data-alt="Closing sessions and award recognition">
+                <img src="assets/past-6.png" alt="Closing sessions and award recognition" loading="lazy" decoding="async">
+                <div class="card-caption">Closing sessions and award recognition</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="7" data-src="assets/04.jpg" data-caption="Conference guests on stage" data-alt="Conference guests on stage">
+                <img src="assets/04.jpg" alt="Conference guests on stage" loading="lazy" decoding="async">
+                <div class="card-caption">Conference guests on stage</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="8" data-src="assets/05.jpg" data-caption="Cultural performance at the event" data-alt="Cultural performance at the event">
+                <img src="assets/05.jpg" alt="Cultural performance at the event" loading="lazy" decoding="async">
+                <div class="card-caption">Cultural performance at the event</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="9" data-src="assets/06.jpg" data-caption="Attendees capturing memorable moments" data-alt="Attendees capturing memorable moments" >
+                <img src="assets/06.jpg" alt="Attendees capturing memorable moments" loading="lazy" decoding="async">
+                <div class="card-caption">Attendees capturing memorable moments</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="10" data-src="assets/07.jpg" data-caption="Guest speakers addressing the audience" data-alt="Guest speakers addressing the audience">
+                <img src="assets/07.jpg" alt="Guest speakers addressing the audience" loading="lazy" decoding="async">
+                <div class="card-caption">Guest speakers addressing the audience</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="11" data-src="assets/08.jpg" data-caption="Stage lighting and event setup" data-alt="Stage lighting and event setup">
+                <img src="assets/08.jpg" alt="Stage lighting and event setup" loading="lazy" decoding="async">
+                <div class="card-caption">Stage lighting and event setup</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="12" data-src="assets/09.jpg" data-caption="Conference audience and stage view" data-alt="Conference audience and stage view">
+                <img src="assets/09.jpg" alt="Conference audience and stage view" loading="lazy" decoding="async">
+                <div class="card-caption">Conference audience and stage view</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="13" data-src="assets/10.jpg" data-caption="Guest welcome and event celebration" data-alt="Guest welcome and event celebration">
+                <img src="assets/10.jpg" alt="Guest welcome and event celebration" loading="lazy" decoding="async">
+                <div class="card-caption">Guest welcome and event celebration</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="14" data-src="assets/11.jpg" data-caption="Panel members on stage" data-alt="Panel members on stage">
+                <img src="assets/11.jpg" alt="Panel members on stage" loading="lazy" decoding="async">
+                <div class="card-caption">Panel members on stage</div>
+            </button>
+            <button type="button" class="gallery-card hidden" data-index="15" data-src="assets/12.jpg" data-caption="Event closing and final remarks" data-alt="Event closing and final remarks">
+                <img src="assets/12.jpg" alt="Event closing and final remarks" loading="lazy" decoding="async">
+                <div class="card-caption">Event closing and final remarks</div>
+            </button>
+        </div>
+
+        <div class="gallery-footer">
+            <button type="button" id="load-more-btn" class="load-more-btn">Load More</button>
+        </div>
+    </section>
+
+    <div class="lightbox-modal" id="lightbox-modal" aria-hidden="true" role="dialog" aria-label="Image preview">
+        <div class="lightbox-content">
+            <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close preview">&times;</button>
+            <img id="lightbox-img" class="lightbox-image" src="" alt="Event image preview">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+            <button type="button" class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous image">&#10094;</button>
+            <button type="button" class="lightbox-nav next" id="lightbox-next" aria-label="Next image">&#10095;</button>
+        </div>
+    </div>
+
+        <footer>
+        <div class="footer-container">
+            <!-- 1. University Information -->
+            <div class="footer-university-info">
+                <img src="assets/dsu.png" alt="University Logo" class="university-logo">
+                <h3>Dhanalakshmi Srinivasan<br>University</h3>
+                <div class="footer-newsletter">
+                    <form name="contact" method="POST" data-netlify="true">
+                        <input type="text" name="name" placeholder="Your Name" required />
+                        <input type="email" name="email" placeholder="Your Email" required />
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/DhanalakshmiSrinivasanUniversity/" target="_blank" title="Facebook"><img src="assets/fb.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com/ds_university_official/" target="_blank" title="Instagram"><img src="assets/insta.png" alt="Instagram"></a>
+                    <a href="https://www.whatsapp.com/channel/0029Vb1hDLA9RZAUCM8Xat0h" target="_blank" title="WhatsApp"><img src="assets/whatsapp.png" alt="WhatsApp"></a>
+                    <a href="https://x.com/DSUTRY_OFFICIAL" target="_blank" title="X (Twitter)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.youtube.com/@DSU-Trichy-Campus" target="_blank" title="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/dhanalakshmisrinivasanuniversity/" target="_blank" title="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
+            </div>
+
+            <!-- 2. Updates -->
+            <div class="footer-links-col">
+                <h4>Updates</h4>
+                <ul>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="submission.html">Submission</a></li>
+                    <li><a href="keydates.html">Key Dates</a></li>
+                    <li><a href="confirmation.html">Call for Confirmation</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="career.html">Career</a></li>
+                </ul>
+            </div>
+
+            <!-- 3. Important Links -->
+            <div class="footer-links-col">
+                <h4>Important Links</h4>
+                <ul>
+                    <li><a href="mset2026.html">MSET-2026</a></li>
+                    <li><a href="sponsors.html">Sponsors</a></li>
+                    <li><a href="venue.html">Venue Information</a></li>
+                    <li><a href="jointheday.html">Join the Day</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- 4. Gallery -->
+            <div class="footer-links-col">
+                <h4>Gallery</h4>
+                <ul>
+                    <li><a href="upcoming_events.html">Upcoming Events</a></li>
+                    <li><a href="past_events.html">Past Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+
+            <!-- 5. School of Engineering -->
+            <div class="footer-school-info">
+                <img src="assets/school.png" alt="School of Engineering Logo" class="school-logo">
+                <h3>School of<br>Engineering and Technology</h3>
+                <img src="assets/logo.jpeg" alt="Gallery Icon" class="gallery-icon">
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>@mset2026conference. All rights reserved</p>
+            <p class="footer-credits">AUDI SIVA | DHARANI | KRUSANTH | NAVEEN</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
