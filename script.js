@@ -42,7 +42,7 @@ function closePopup() {
 
 function downloadBrochure() {
     const link = document.createElement('a');
-    link.href = 'assets/ICMSET 26.pdf';
+    link.href = 'assets/ICMSET 26 Bi-Fold FINAL_20260807_203917_0000.pdf';
     link.download = 'ICMSET26_Brochure.pdf';
     document.body.appendChild(link);
     link.click();
