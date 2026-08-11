@@ -9,15 +9,95 @@
 
 <body>
 
+    <!-- ====== POPUP MODAL ====== -->
+    <div id="popup-overlay" style="
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: rgba(0,0,0,0.65);
+        align-items: center;
+        justify-content: center;
+        animation: fadeInOverlay 0.4s ease;
+    ">
+        <div style="
+            position: relative;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            max-width: 70vw;
+            max-height: 72vh;
+            overflow: hidden;
+            animation: popIn 0.45s cubic-bezier(.22,1,.36,1);
+        ">
+            <button onclick="document.getElementById('popup-overlay').style.display='none'" style="
+                position: absolute;
+                top: 10px;
+                right: 14px;
+                background: rgba(0,0,0,0.55);
+                border: none;
+                color: #fff;
+                font-size: 22px;
+                line-height: 1;
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " title="Close">&times;</button>
+            <img src="assets/Popup image.jpeg" alt="MSET 2026 Popup" style="
+                display: block;
+                max-width: 65vw;
+                max-height: 65vh;
+                object-fit: contain;
+            ">
+        </div>
+    </div>
+    <style>
+        @keyframes fadeInOverlay {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        // Close popup when clicking the backdrop
+        document.getElementById('popup-overlay').addEventListener('click', function (e) {
+            if (e.target === this) this.style.display = 'none';
+        });
+    </script>
+
+
     <div class="navbar" id="home">
-        <div class="logo">
-            <img src="https://www.dsuniversity.ac.in/images/DSU_Logo.png" alt="University Logo">
-        </div>
-        <div class="navbar-left">
-            <h2>DHANALAKSHMI SRINIVASAN UNIVERSITY</h2>
-            <p>Established Under The Tamil Nadu Private Universities Act, 2019</p>
-            <p>Tiruchirappalli - 621 112. Tamil Nadu, India.</p>
-        </div>
+        <a href="index.html" class="navbar-home-link">
+            <div class="logo">
+                <img src="https://www.dsuniversity.ac.in/images/DSU_Logo.png" alt="University Logo">
+            </div>
+            <div class="navbar-left">
+                <h2>DHANALAKSHMI SRINIVASAN UNIVERSITY</h2>
+                <p>Established Under The Tamil Nadu Private Universities Act, 2019</p>
+                <p>Tiruchirappalli - 621 112. Tamil Nadu, India.</p>
+            </div>
+        </a>
 
 
         <div class="nav-links">
@@ -32,37 +112,42 @@
     </div>
     <hr>
     <div class="marquee-alternate">
-        <a href="https://forms.gle/AmMqxGii13QQccs77" target="_blank">🎉 ABSTRACT SUBMISSION DEADLINE <span
-                class="blink">**EXTENDED**</span> : [ 07 / 03 / 25] </a>
+        <a href="https://tinyurl.com/89eph45m" target="_blank">🎉 FULL PAPER SUBMISSION DEADLINE : AUGUST 31, 2026 |
+            ACCEPTANCE NOTIFICATION : SEPTEMBER 16, 2026 </a>
     </div>
 
 
     <div class="slider-container">
         <button class="button prev">&#10094;</button>
+        <button class="button next">&#10095;</button>
         <div class="banner">
             <div class="slider">
                 <div class="slide">
-                    <a href="https://forms.gle/AmMqxGii13QQccs77" target="_blank">
-                        <img src="assets/mset1.png" alt="MSET 2026 Conference Banner" width="100%">
+                    <a href="https://tinyurl.com/89eph45m" target="_blank">
+                        <img src="assets/slide-1.jpeg" alt="MSET 2026 Conference Banner" width="100%">
                     </a>
                 </div>
                 <div class="slide">
-                    <a href="https://forms.gle/AmMqxGii13QQccs77" target="_blank">
-                        <img src="assets/mset2.png" alt="MSET 2026 Conference Banner" width="100%">
+                    <a href="https://tinyurl.com/89eph45m" target="_blank">
+                        <img src="assets/mset1.jpeg" alt="MSET 2026 Conference Banner" width="100%">
                     </a>
                 </div>
                 <div class="slide">
-                    <a href="https://forms.gle/AmMqxGii13QQccs77" target="_blank">
-                        <img src="assets/mset3.png" alt="MSET 2026 Conference Banner" width="100%">
+                    <a href="https://tinyurl.com/89eph45m" target="_blank">
+                        <img src="assets/mset2.jpeg" alt="MSET 2026 Conference Banner" width="100%">
                     </a>
                 </div>
                 <div class="slide">
-                    <a href="https://forms.gle/AmMqxGii13QQccs77" target="_blank">
-                        <img src="assets/mset4.png" alt="MSET 2026 Conference Banner" width="100%">
+                    <a href="https://tinyurl.com/89eph45m" target="_blank">
+                        <img src="assets/mset3.jpeg" alt="MSET 2026 Conference Banner" width="100%">
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://tinyurl.com/89eph45m" target="_blank">
+                        <img src="assets/mset4.jpeg" alt="MSET 2026 Conference Banner" width="100%">
                     </a>
                 </div>
             </div>
-            <button class="button next">&#10095;</button>
         </div>
         <script>document.addEventListener("DOMContentLoaded", function () {
                 let currentIndex = 0;
@@ -126,23 +211,30 @@
                 Register now and be part of the conversation shaping the future of global innovation.
             </p>
         </section>
-        <div class="logo2">
-            <img src="assets/logo.jpeg" width="60%">
+        <div class="logo2" style="padding: 20px 0;">
+            <img src="assets/logo.jpeg"
+                style="width: 85%; height: auto; object-fit: contain; display: block; margin: 0 auto;">
         </div>
-        <hr>
         <section id="about">
             <div class="about-container">
                 <div class="about-section">
                     <div class="about-text">
                         <h2>About Us</h2>
-                        <p>The Dhanalakshmi Srinivasan University (DSU) has been established under the Tamil Nadu
-                            Private
-                            Universities Act, 2019, located in Tiruchirappalli, Tamil Nadu, India.
-                            Uniqueness of DSU lies in its multi-disciplinary nature in offering a wide range of academic
-                            programmes encompassing medicine and engineering. Our motto is "education
-                            for the real world" with dedication and commitment towards nurturing the future generation.
-                            Green ambience with state-of-the-art infrastructure along with top-class
-                            faculty aims to serve the need of national and international students.</p>
+                        <p>Dhanalakshmi Srinivasan University (DSU), established under the Tamil Nadu Private
+                            Universities Act 2019 by Dhanalakshmi Srinivasan Charitable and Educational Trust, is a
+                            leading
+                            institution in Tiruchirappalli focused on excellence in education and research. It offers a
+                            dynamic
+                            learning environment with innovative teaching methods, hands-on training and global exposure
+                            through collaborations. DSU's highly qualified faculty fosters intellectual growth,
+                            creativity, critical
+                            thinking and preparing students for a rapidly evolving world. With state-of-the-art
+                            infrastructure
+                            and a student-centric approach, the university emphasizes holistic development and values.
+                            DSU
+                            aims to nurture future leaders who contribute meaningfully to their fields and communities
+                            with
+                            confidence and integrity.</p>
                     </div>
                     <div class="about-images">
                         <img src="https://dsuniversity.ac.in/infra/camp1.jpg" alt="Campus View">
@@ -158,34 +250,15 @@
                 <div class="about-section">
                     <div class="about-text">
                         <h2>About <strong style="color: #001c4f;">School of Engineering and Technology</strong></h2>
-                        <p><span>School of Engineering and Technology (SET)</span> in DSU is a beacon of innovation and
-                            academic excellence, offering
-                            cutting-edge programs designed to shape the next generation of engineering leaders. SET has
-                            a
-                            range of 12 departments
-                            that include Electrical and Electronics Engineering, Mechanical Engineering, Agriculture
-                            Engineering, Electronics and
-                            Communication Engineering, Biomedical Engineering, Biotechnology, Computer Science
-                            Engineering,
-                            Information Technology,
-                            Artificial Intelligence and Date Structure, Artificial Intelligence and Machine Learning,
-                            Cyber
-                            Security and Internet
-                            of Things. With a strong emphasis on practical learning and research, SET equips students
-                            with
-                            the technical expertise,
-                            critical thinking abilities, and hands-on experience needed to excel in a competitive,
-                            technology-driven world. SET
-                            boasts a team of highly qualified and experienced Faculty who are dedicated to mentoring
-                            students and fostering a
-                            culture of academic rigor and innovation. State-of-the-art laboratories, well-equipped
-                            workshops, and modern computing
-                            facilities ensure that students have access to the latest tools and technologies to enhance
-                            their learning experience.
-                            In addition to academics, SET emphasizes holistic development by encouraging participation
-                            in
-                            technical clubs,
-                            competitions, and industry collaborations. </p>
+                        <p>The School of Engineering and Technology (SET) at DSU offers 13 programs emphasizing
+                            practical learning and research. Equipped with state-of-the-art labs and experienced
+                            faculty, SET
+                            fosters academic rigor and technical expertise. Students gain real-world exposure through
+                            internships, industry collaborations and live projects. Memorandum of Understanding with
+                            global
+                            institutions enhance learning opportunities. SET aims to develop ethical cum skilled
+                            engineers
+                            ready to address real-world challenges and contribute meaningfully to society.</p>
                     </div>
                     <div class="about-images">
                         <img src="https://www.dsuniversity.ac.in/gallery/g5.jpg" alt="Campus View">
@@ -212,15 +285,16 @@
                 <p>Be a part of the change the world needs today.</p>
                 <div class="event-details">
                     <div class="detail-item">
-                        <img src="https://static.vecteezy.com/system/resources/previews/009/589/226/original/location-location-pin-location-icon-transparent-free-png.png" alt="Location icon">
+                        <img src="https://static.vecteezy.com/system/resources/previews/009/589/226/original/location-location-pin-location-icon-transparent-free-png.png"
+                            alt="Location icon">
                         <p>Seminar Hall,<br>Dhanalakshmi Srinivasan University<br>Trichy</p>
                     </div>
                     <div class="detail-item">
                         <img src="assets/calender.png" alt="Calendar icon">
-                        <p>September<br>2026</p>
+                        <p>September 24 & 25,<br>2026</p>
                     </div>
                 </div>
-                <a href="https://forms.gle/AmMqxGii13QQccs77"><button class="register-btn">Spot Your Seat</button></a>
+                <a href="https://tinyurl.com/89eph45m"><button class="register-btn">Spot Your Seat</button></a>
             </div>
             <div class="event-image">
                 <img src="assets/image.png" alt="Event Speaker">
@@ -314,13 +388,25 @@
 
         <h1 class="top">WELCOME TO MSET2026!</h1>
         <div class="countdown-container">
-            <center>
-                <p class="event-time">The event will start in</p>
-                <span id="days" class="time">00</span> Days :
-                <span id="hours" class="time">00</span> Hours :
-                <span id="minutes" class="time">00</span> Minutes :
-                <span id="seconds" class="time">00</span> Seconds
-            </center>
+            <p class="event-time">THE EVENT WILL START IN</p>
+            <div class="countdown-wrapper"
+                style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="days" class="time">00</span> <span class="time-label">Days<span class="colon">
+                            :</span></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="hours" class="time">00</span> <span class="time-label">Hours<span class="colon">
+                            :</span></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="minutes" class="time">00</span> <span class="time-label">Minutes<span class="colon">
+                            :</span></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="seconds" class="time">00</span> <span class="time-label">Seconds</span>
+                </div>
+            </div>
         </div>
 
         <section id="topics">
@@ -519,22 +605,13 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>ABSTRACT SUBMISSION DEADLINE</td>
-                            <td>JULY 31, 2026</td>
-                        </tr>
-                        <tr>
-                            <td class="extended-deadline">REGISTRATION DEADLINE</td>
-                            <td class="extended-deadline">AUGUST 15, 2026</td>
-                        </tr>
-                        <tr>
                             <td>FULL PAPER SUBMISSION</td>
                             <td>AUGUST 31, 2026</td>
                         </tr>
                         <tr>
-                            <td>ACCEPTANCE REVELATION</td>
+                            <td>ACCEPTANCE NOTIFICATION</td>
                             <td>SEPTEMBER 16, 2026</td>
                         </tr>
-
                     </tbody>
                 </table>
 
@@ -590,7 +667,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <a href="https://forms.gle/AmMqxGii13QQccs77">
+                <a href="https://tinyurl.com/89eph45m">
                     <center><button class="register-btn">Spot Your Seat</button></center>
                 </a>
         </section>
@@ -611,7 +688,21 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80"
+                                <img src="data:image/jpeg;base64,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"
+                                    alt="Prof. Ashok Kumar Nanjundan">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Prof. Ashok Kumar Nanjundan</strong>
+                                <span class="advisory-designation">Professor of Energy Storage, School of Science,
+                                    Engineering and Digital Technologies</span>
+                                <span class="advisory-affiliation">University of Southern Queensland, Springfield,
+                                    Queensland, Australia</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://ui-avatars.com/api/?name=Dr.+C.+G.+Senthilkumar&background=dce8f5&color=1a3a6e&size=300&bold=true&format=png"
                                     alt="Dr. C. G. Senthilkumar">
                             </div>
                             <div class="advisory-info">
@@ -623,80 +714,186 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIpvVAHS4efpqwkQADWQppWnbRMHBXRweGte9mXyKp5lAshem1V6rYNnqE&s=10"
                                     alt="Prof. Boluwaji Ade Akinnuwesi">
                             </div>
                             <div class="advisory-info">
                                 <strong>Prof. Boluwaji Ade Akinnuwesi</strong>
                                 <span class="advisory-designation">Professor, Department of Computer Science</span>
-                                <span class="advisory-affiliation">Faculty of Science & Engineering, University of
-                                    Eswatini, Southern Africa</span>
+                                <span class="advisory-affiliation">University of Eswatini, Kwaluseni, Eswatini, Southern
+                                    Africa</span>
                             </div>
                         </div>
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLxv_JCcyeQ7BAlKOX2q4bSX1Fim_g47j4LtGbgCeSSg&s=10"
                                     alt="Prof. Olawande Daramola">
                             </div>
                             <div class="advisory-info">
                                 <strong>Prof. Olawande Daramola</strong>
                                 <span class="advisory-designation">Professor, Department of Informatics</span>
-                                <span class="advisory-affiliation">Faculty of EBIT, University of Pretoria, Pretoria,
-                                    South Africa</span>
+                                <span class="advisory-affiliation">Faculty of Engineering, University of Pretoria,
+                                    Pretoria, South Africa</span>
                             </div>
                         </div>
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ86w9ZHMYXNNjQwQ5Xl3MlhQUd7FNPn4aLkn85K2QzA&s=10"
                                     alt="Prof. Stephen Olatunde Olabiyisi">
                             </div>
                             <div class="advisory-info">
                                 <strong>Prof. Stephen Olatunde Olabiyisi</strong>
-                                <span class="advisory-designation">Professor, Department of CSE</span>
-                                <span class="advisory-affiliation">Faculty of Computing & Informatics, Ladoke Akintola
-                                    University of Technology, Nigeria</span>
+                                <span class="advisory-designation">Professor, Department of Computer Science and
+                                    Engineering</span>
+                                <span class="advisory-affiliation">Ladoke Akintola University of Technology, Ogbomoso,
+                                    Nigeria</span>
                             </div>
                         </div>
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
                                 <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=256&q=80"
-                                    alt="Dr. Arun Prakash R.">
+                                    alt="Dr. Aravind Pitchai Venkataraman">
                             </div>
                             <div class="advisory-info">
-                                <strong>Dr. Arun Prakash R.</strong>
-                                <span class="advisory-designation">Associate Professor</span>
-                                <span class="advisory-affiliation">School of Computer & Systems Sciences, Jawaharlal
-                                    Nehru University, New Delhi, India</span>
+                                <strong>Dr. Aravind Pitchai Venkataraman</strong>
+                                <span class="advisory-designation">Associate Professor and Head, Electronics and
+                                    Telecommunication Engineering (EEET)</span>
+                                <span class="advisory-affiliation">St. Joseph University in Tanzania (SJUIT), Dar es
+                                    Salaam, Tanzania</span>
                             </div>
                         </div>
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80"
-                                    alt="Dr. Brindha">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuu9XGbVliwXBsS2aAtYv5V7pS8_a_xaW30CtcNoCd_pW-wFeBAc0SuFhy&s=10"
+                                    alt="Dr. Sankar Sekar">
                             </div>
                             <div class="advisory-info">
-                                <strong>Dr. Brindha</strong>
-                                <span class="advisory-designation">Associate Professor, Department of CSE</span>
-                                <span class="advisory-affiliation">NIT Tiruchirappalli, Tamil Nadu, India & IAFOR
-                                    Liaison</span>
+                                <strong>Dr. Sankar Sekar</strong>
+                                <span class="advisory-designation">Associate Professor, College of Advanced Convergence
+                                    Engineering</span>
+                                <span class="advisory-affiliation">Dongguk University, Seoul, South Korea</span>
                             </div>
                         </div>
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80"
-                                    alt="Dr. U. Srinivasulu Reddy">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0_J2479oauD6I16nWkiQB4OIzPGobn2ToBchf9_qMGw&s=10"
+                                    alt="Prof. Grienggrai Rajchakit">
                             </div>
                             <div class="advisory-info">
-                                <strong>Dr. U. Srinivasulu Reddy</strong>
-                                <span class="advisory-designation">Associate Professor, Department of Computer
-                                    Applications</span>
-                                <span class="advisory-affiliation">NIT Tiruchirappalli, Tamil Nadu, India & IAFOR
-                                    Liaison</span>
+                                <strong>Prof. Grienggrai Rajchakit</strong>
+                                <span class="advisory-designation">Professor, Department of Mathematics</span>
+                                <span class="advisory-affiliation">Maejo University, Chiang Mai, Thailand</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://dsuniversity.edu.in/ICAMSET/images/Santo.jpg"
+                                    alt="Dr. Santo Banerjee">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Santo Banerjee</strong>
+                                <span class="advisory-designation">Senior Research Associate, Department of Mathematical
+                                    Sciences</span>
+                                <span class="advisory-affiliation">Politecnico di Torino, Turin, Italy</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://dsuniversity.edu.in/ICAMSET/images/Tan%20Shing%20Chiang.jpg"
+                                    alt="Prof. Ts. Dr. Tan Shing Chiang">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Prof. Ts. Dr. Tan Shing Chiang</strong>
+                                <span class="advisory-designation">Professor, Faculty of Information Science and
+                                    Technology (FIST)</span>
+                                <span class="advisory-affiliation">Multimedia University (MMU), Melaka Campus, Melaka,
+                                    Malaysia</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://www.dsuniversity.edu.in/images/Lamberto.jpg"
+                                    alt="Prof. Lamberto Rondoni">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Prof. Lamberto Rondoni</strong>
+                                <span class="advisory-designation">Full Professor, Department of Mathematical Sciences
+                                    (DISMA)</span>
+                                <span class="advisory-affiliation">Politecnico di Torino, Turin, Italy</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT64VheiJGuAQXUPGTXyeIKBzU7wuwTU2A2SDPw2NsG4g&s=10"
+                                    alt="Dr. Sathishraj Rajendran">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Sathishraj Rajendran</strong>
+                                <span class="advisory-designation">Research Associate, Department of Plant
+                                    Pathology</span>
+                                <span class="advisory-affiliation">Kansas State University, Manhattan, Kansas 66502,
+                                    USA</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://luccar.ufes.br/sites/cmm.ufes.br/files/imagem/jairoluccar-68_1_0.jpg"
+                                    alt="Prof. Jairo Pinto de Oliveira">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Prof. Jairo Pinto de Oliveira</strong>
+                                <span class="advisory-designation">Universidade Federal do Espirito Santo (UFES)</span>
+                                <span class="advisory-affiliation">Centro de Pesquisa, Inovacao e Desenvolvimento
+                                    (CPID/IES), Espirito Santo, Brazil</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQmIrFnRHoP1YI7hi9-NJk1ORBsnBUxzvteW1ppzab8g&s=10"
+                                    alt="Dr. Anele Mayekiso">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Anele Mayekiso</strong>
+                                <span class="advisory-designation">Ph.D.</span>
+                                <span class="advisory-affiliation">University of Fort Hare, Eastern Cape, South
+                                    Africa</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL2PTv0vos5Qa2egYdzXVu1-UTHk4K_LXCSmWDC-Ud3w&s=10"
+                                    alt="Dr. Siva Mohan Reddy Goddeti">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Siva Mohan Reddy Goddeti</strong>
+                                <span class="advisory-designation"></span>
+                                <span class="advisory-affiliation">Tshwane University of Technology, Pretoria, South
+                                    Africa</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm3SuEXv7XAdMrMozMqUnYlcr54T0fcmlyqZlr8WlfXA&s=10"
+                                    alt="Dr. Gopinathan Janarthanan">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Gopinathan Janarthanan</strong>
+                                <span class="advisory-designation">Research Scientist, Division of Engineering</span>
+                                <span class="advisory-affiliation">New York University Abu Dhabi (NYUAD), Saadiyat
+                                    Campus, Abu Dhabi, United Arab Emirates</span>
                             </div>
                         </div>
 
@@ -710,7 +907,7 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://cms.ptuniv.edu.in/profilepic/1689083227whatsapp%20image%202023-07-11%20at%2019.13.59.jpg"
                                     alt="Dr. G. Nagarajan">
                             </div>
                             <div class="advisory-info">
@@ -723,7 +920,7 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYqS5mN0j78vcjF9TUtRPKubdvPxCQumUwVI1gMF75sQ&s=10"
                                     alt="Dr. Gnanou Florence Sudha">
                             </div>
                             <div class="advisory-info">
@@ -736,7 +933,7 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://cms.ptuniv.edu.in/profilepic/165356611320220524_093542%20copy1.jpg"
                                     alt="Dr. V. Saminadan">
                             </div>
                             <div class="advisory-info">
@@ -762,7 +959,7 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFYc-4V1mpF_7MLQblOi43q8D8S_4_f0ITM6eTVr5NPA&s=10"
                                     alt="Dr. B. Hema Kumar">
                             </div>
                             <div class="advisory-info">
@@ -775,7 +972,7 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://www.pondiuni.edu.in/wp-content/uploads/2020/06/RN_Photo_2020-Nakkeeran-R.jpg"
                                     alt="Dr. R. Nakkeeran">
                             </div>
                             <div class="advisory-info">
@@ -787,7 +984,7 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://nitt.edu/home/academics/departments/ice/faculty/sivakumaran/Sivakumaran.jpeg"
                                     alt="Dr. N. Sivakumaran">
                             </div>
                             <div class="advisory-info">
@@ -799,13 +996,162 @@
 
                         <div class="advisory-card">
                             <div class="advisory-photo">
-                                <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://www.nitttrc.ac.in//Facultyimg/faculty/photo_GK.jpg"
                                     alt="Dr. G. Kulanthaivel">
                             </div>
                             <div class="advisory-info">
                                 <strong>Dr. G. Kulanthaivel</strong>
                                 <span class="advisory-designation">Professor</span>
-                                <span class="advisory-affiliation">NITTTR, Chennai, India</span>
+                                <span class="advisory-affiliation">NITTTR, Chennai</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://media.licdn.com/dms/image/v2/D4D03AQGKVi2okZKbpg/profile-displayphoto-shrink_200_200/B4DZROhikaHkAY-/0/1736484203229?e=2147483647&v=beta&t=2exFh8kPuGVeuE84AQjuIZPbeRC6gBTpJW5EobALNtI"
+                                    alt="Dr. Vairamuthu S">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Vairamuthu S</strong>
+                                <span class="advisory-designation">Professor, School of Computer Science and
+                                    Engineering</span>
+                                <span class="advisory-affiliation">Vellore Institute of Technology (VIT), Chennai</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://www.jnu.ac.in/sites/default/files/styles/medium/public/faculty_images/arunprakash.jpg?itok=8988wA-F"
+                                    alt="Dr. Arun Prakash R">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Arun Prakash R</strong>
+                                <span class="advisory-designation">Associate Professor, School of Computer and Systems
+                                    Sciences</span>
+                                <span class="advisory-affiliation">Jawaharlal Nehru University, New Delhi, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzwk-VEbbNLO5ylmKPa6WBcTOPqJpHcWsb-8Pfwe6EtQ&s=10"
+                                    alt="Dr. Brindha">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Brindha</strong>
+                                <span class="advisory-designation">Associate Professor, Department of Computer Science
+                                    and Engineering</span>
+                                <span class="advisory-affiliation">National Institute of Technology, Tiruchirappalli,
+                                    Tamil Nadu, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://www.nitt.edu/home/academics/departments/ca/facultymca/dr_u_srinivasulu_reddy/DrUSR.JPG"
+                                    alt="Dr. U. Srinivasulu Reddy">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. U. Srinivasulu Reddy</strong>
+                                <span class="advisory-designation">Associate Professor, Department of Computer
+                                    Applications</span>
+                                <span class="advisory-affiliation">National Institute of Technology, Tiruchirappalli,
+                                    Tamil Nadu, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyrCy2GpVdfBgbZ6j2eJfYSiOmoMDd26uViHG0VR3zbQ&s=10"
+                                    alt="Dr. K. Baskaran">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. K. Baskaran</strong>
+                                <span class="advisory-designation">Biomedical Engineer & South Regional Manager</span>
+                                <span class="advisory-affiliation">Gentech Marketing and Distribution Pvt. Ltd., New
+                                    Delhi, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQINgYR-V98ayZIbsDphD51SH171uIVqJi1tz9Uq2YPgA&s=10"
+                                    alt="Dr. D. Kalpana">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. D. Kalpana</strong>
+                                <span class="advisory-designation">Assistant Professor, Department of Instrumentation
+                                    Engineering</span>
+                                <span class="advisory-affiliation">Anna University, Chennai, Tamil Nadu, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj-XXJGIkjFZCZlhqT0PCmTiXaQdNs-cj7NddMoIbC-w&s=10"
+                                    alt="Dr. D. Sriram Kumar">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. D. Sriram Kumar</strong>
+                                <span class="advisory-designation">Professor, Department of ECE</span>
+                                <span class="advisory-affiliation">National Institute of Technology, Tiruchirappalli,
+                                    Tamil Nadu, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpFKlN5_W6Sjc3hs7qJPCO9QHL37dv0qhdRlwJ10bOcQ&s=10"
+                                    alt="Dr. Ravi K. R">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Ravi K. R</strong>
+                                <span class="advisory-designation">Professor, Department of Metallurgical and Materials
+                                    Engineering</span>
+                                <span class="advisory-affiliation">Indian Institute of Technology Jodhpur, Jodhpur,
+                                    Rajasthan, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkGaP6DxxY8-mAiEH1v1tBkkLrouWTtjYNJyxfPQLc5A&s=10"
+                                    alt="Dr. Arun K. Prasad">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. Arun K. Prasad</strong>
+                                <span class="advisory-designation">Scientific Officer-F, Materials Science Group
+                                    (MSG)</span>
+                                <span class="advisory-affiliation">Indira Gandhi Centre for Atomic Research (IGCAR),
+                                    Kalpakkam, Tamil Nadu, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://ui-avatars.com/api/?name=Prof.+Suryasarathi+Bose&background=dce8f5&color=1a3a6e&size=300&bold=true&format=png"
+                                    alt="Prof. Suryasarathi Bose">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Prof. Suryasarathi Bose (Surjo)</strong>
+                                <span class="advisory-designation">F.N.A.Sc., Professor, Department of Materials
+                                    Engineering</span>
+                                <span class="advisory-affiliation">Indian Institute of Science (IISc), Bengaluru,
+                                    Karnataka, India</span>
+                            </div>
+                        </div>
+
+                        <div class="advisory-card">
+                            <div class="advisory-photo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA2Bn-q_56ptQjAqrzU2e16KdN864vz0UvaUa_IO2bEw&s=10"
+                                    alt="Dr. P. Biji">
+                            </div>
+                            <div class="advisory-info">
+                                <strong>Dr. P. Biji</strong>
+                                <span class="advisory-designation">Professor & Head, Department of Chemistry /
+                                    Nanoscience & Technology</span>
+                                <span class="advisory-affiliation">PSG Institute of Advanced Studies, Coimbatore, Tamil
+                                    Nadu, India</span>
                             </div>
                         </div>
 
@@ -828,7 +1174,7 @@
 
                         <div class="sponsor-card">
                             <div class="sponsor-logo">
-                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://media.licdn.com/dms/image/v2/C5103AQHq-7bP-Jhq4w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1516265413176?e=2147483647&v=beta&t=q7ojzm3Ln27wj4gNX40a0-k2fZWLf3Vaidn1ELfFiIg"
                                     alt="SonicWall" style="object-fit: cover;">
                             </div>
                             <div class="advisory-info">
@@ -840,7 +1186,7 @@
 
                         <div class="sponsor-card">
                             <div class="sponsor-logo">
-                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80"
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Jn5JjNqBGlDkRXwTP-bocp8YSA-Shyg9L8MORcdNtg&s=10"
                                     alt="Springer" style="object-fit: cover;">
                             </div>
                             <div class="advisory-info">
@@ -932,16 +1278,16 @@
                     <div class="feature">
                         <h3>Technical Sessions</h3>
                         <hr>
-                        <p>In-depth discussions will focus on the latest developments in technology, engineering, and
-                            social
-                            sciences that are reshaping the future of problem-solving.</p>
+                        <p>In-depth discussions will focus on the cutting-edge innovations and emerging
+                            trends in technology, engineering, and social sciences that are reshaping the
+                            future of problem-solving.</p>
                     </div>
 
                     <div class="feature">
                         <h3>Expert Panels</h3>
                         <hr>
-                        <p>Multidisciplinary panels will bring together thought leaders from diverse fields to discuss
-                            actionable solutions to complex global issues.</p>
+                        <p>Multidisciplinary panels will bring together thoughtful leaders from diverse fields
+                            to discuss actionable solutions to complex global issues.</p>
                     </div>
 
                     <div class="feature">
@@ -957,31 +1303,36 @@
 
         <!-- Publishing Details Container -->
         <div class="publishing-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Scopus_logo.svg/800px-Scopus_logo.svg.png"
-                alt="Scopus Logo">
+            <div class="publishing-logos">
+                <img src="assets/biopac_logo.jpg" alt="BIOPAC Logo">
+                <img src="assets/kav_logo.jpg" alt="KAV Logo">
+            </div>
 
             <div class="publishing-content">
                 <h2>Publishing Details</h2>
 
                 <h3>Conference Proceedings</h3>
                 <hr>
-                <p>Abstracts of all accepted and presented papers will be published in the conference proceedings, which
-                    will be assigned an ISBN (International Standard Book Number). This ensures that the work is
-                    formally
-                    documented and accessible.</p>
+                <p>All accepted and presented full papers will be published in the official conference proceedings with
+                    an ISBN,
+                    ensuring that the research is formally documented, widely accessible, and permanently archived
+                    for academic reference.</p>
 
                 <h3>Extended Papers in Journals</h3>
                 <hr>
-                <p>Authors of selected papers will have the opportunity to extend their work and submit it for
-                    consideration
-                    in Scopus-indexed or UGC Care-listed journals. However, acceptance will depend on:</p>
+                <p>Authors of selected papers are invited to submit extended versions of their work for consideration
+                    in Scopus-indexed or Web of Science journals. Acceptance is subject to the following criteria:</p>
 
                 <ul>
                     <li><strong>Scope:</strong> The paper must align with the journal's thematic focus.</li>
                     <li><strong>Quality:</strong> The paper must meet the journal's academic and technical standards.
                     </li>
-                    <li><strong>Financial Requirements:</strong> Authors may need to pay additional publication fees, if
-                        applicable, as per the journal's policies.</li>
+                    <li><strong>Financial Requirements:</strong> Authors may need to pay additional
+                        publication fees, if applicable, as per the journal's policies.</li>
+                </ul>
+                <p><em><strong>Note:</strong> Information regarding the available journals for publication will be
+                        shared
+                        with authors upon the successful completion of the primary review process.</em></p>
                 </ul>
             </div>
         </div>
@@ -1021,7 +1372,7 @@
                     <h3>Conference Advisors</h3>
                     <div class="team-grid">
                         <div class="committee-member">
-                            <div class="member-info"><strong>Dr. C. K. Rajan</strong>
+                            <div class="member-info"><strong>Dr. C. K. Ranjan</strong>
                                 <p>Vice Chancellor, DSU</p>
                             </div>
                         </div>
@@ -1048,6 +1399,26 @@
                     <h3>Internal Advisory Council</h3>
                     <div class="team-grid">
                         <div class="committee-member">
+                            <div class="member-info"><strong>Dr. V. Sekar</strong>
+                                <p>Dean - Campus, Chennai</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. V. Raju</strong>
+                                <p>Dean of Student Affairs</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. Shankar Duraikannan</strong>
+                                <p>Dean, SET, Chennai</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. V. P. Dinesh</strong>
+                                <p>Assoc. Dean, Research</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
                             <div class="member-info"><strong>Dr. P. Rosy Vennila</strong>
                                 <p>Dean, SMCH, DSU</p>
                             </div>
@@ -1068,8 +1439,8 @@
                             </div>
                         </div>
                         <div class="committee-member">
-                            <div class="member-info"><strong>Dr. J. Ramesh Kumar</strong>
-                                <p>Dean, Physiotherapy, DSU</p>
+                            <div class="member-info"><strong>Dr. S. Senthil Kumar</strong>
+                                <p>Dean (i/c), Physiotherapy, DSU</p>
                             </div>
                         </div>
                         <div class="committee-member">
@@ -1089,12 +1460,17 @@
                         </div>
                         <div class="committee-member">
                             <div class="member-info"><strong>Dr. C. Viji</strong>
-                                <p>Dean, SOAS, DSU</p>
+                                <p>Dean (i/c), SOAS, DSU</p>
                             </div>
                         </div>
                         <div class="committee-member">
                             <div class="member-info"><strong>Dr. B. Rajeswari</strong>
                                 <p>Dean, SOL, DSU</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. R. Vijayalakshimi</strong>
+                                <p>Dean (i/c), SLS, DSU</p>
                             </div>
                         </div>
                     </div>
@@ -1122,18 +1498,45 @@
                     </div>
                 </div>
 
-                <!-- Publication & Publicity Chair -->
+                <!-- Publication & Publicity Chairs -->
                 <div class="team-category publication-publicity-chair-section">
-                    <h3>Publication & Publicity Chair</h3>
+                    <h3>Publication & Publicity Chairs</h3>
                     <div class="team-grid">
                         <div class="committee-member">
-                            <div class="member-info"><strong>Dr. N. Shankar</strong>
-                                <p>Assoc. Dean, SET, DSU</p>
+                            <div class="member-info"><strong>Dr. R. Ramkumar</strong>
+                                <p>HoD, EEE, SET</p>
                             </div>
                         </div>
                         <div class="committee-member">
-                            <div class="member-info"><strong>Dr. K. Balamurugan</strong>
-                                <p>SET, DSU</p>
+                            <div class="member-info"><strong>Dr. A. Anto Spiritus Kingsly</strong>
+                                <p>BME, SET</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thematic Track Advisors -->
+                <div class="team-category thematic-track-advisors-section">
+                    <h3>Thematic Track Advisors</h3>
+                    <div class="team-grid">
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. B. Ramesh</strong>
+                                <p>Assoc. Dean, SET</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. N. Shanmugapriya</strong>
+                                <p>Assoc. Dean, SET</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. M. Lakshmi</strong>
+                                <p>Assoc. Dean, SET</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. N. Shankar</strong>
+                                <p>Assoc. Dean, SET</p>
                             </div>
                         </div>
                     </div>
@@ -1144,8 +1547,13 @@
                     <h3>Finance and Sponsorship Chair</h3>
                     <div class="team-grid">
                         <div class="committee-member">
-                            <div class="member-info"><strong>Dr. R. Ramkumar</strong>
-                                <p>Asst. Prof., SET, DSU</p>
+                            <div class="member-info"><strong>Dr. R. Meganathan</strong>
+                                <p>SET, DSU</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Mr. R. Karthikeyan</strong>
+                                <p>SET, DSU</p>
                             </div>
                         </div>
                     </div>
@@ -1168,12 +1576,12 @@
                     <h3>Organising & Technical Committee Chairs</h3>
                     <div class="team-grid">
                         <div class="committee-member">
-                            <div class="member-info"><strong>Mr. S. Bharath</strong>
+                            <div class="member-info"><strong>Dr. B. Kailashkumar</strong>
                                 <p>HoD - Agriculture Engineering</p>
                             </div>
                         </div>
                         <div class="committee-member">
-                            <div class="member-info"><strong>Dr. V. L. Maruthanila</strong>
+                            <div class="member-info"><strong>Dr. T. Sheela</strong>
                                 <p>HoD - BioTech</p>
                             </div>
                         </div>
@@ -1198,12 +1606,7 @@
                             </div>
                         </div>
                         <div class="committee-member">
-                            <div class="member-info"><strong>Dr. K.Tharmar</strong>
-                                <p>DPE, DSU</p>
-                            </div>
-                        </div>
-                        <div class="committee-member">
-                            <div class="member-info"><strong>Dr. S. Sashikumar</strong>
+                            <div class="member-info"><strong>Dr. K. Akila</strong>
                                 <p>HoD - IT</p>
                             </div>
                         </div>
@@ -1237,9 +1640,19 @@
                                 <p>HoD - Physics</p>
                             </div>
                         </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. S. Bharathi</strong>
+                                <p>HoD - MBA</p>
+                            </div>
+                        </div>
+                        <div class="committee-member">
+                            <div class="member-info"><strong>Dr. M. Sughasiny</strong>
+                                <p>HoD - MCA</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="dropdown-item">
+                <div class="dropdown-item" style="display: none;">
                     <input type="checkbox" id="committee-toggle" class="dropdown-toggle">
                     <label for="committee-toggle" class="dropdown-button">Organizing Committee <span
                             class="arrow">&#9660;</span></label>
@@ -1406,7 +1819,7 @@
                                     Contact: +91 4312 222222<br>
                                     Price: ₹2,800 - ₹4,500 per night<br>
                                 </div>
-                                <img src="https://www.grandgardeniatrichy.com/gallery/grand-gardenia-hotel-trichy.jpg"
+                                <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=455&q=80"
                                     onerror="this.src='https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=455&q=80'"
                                     alt="Grand Gardenia" class="image-container">
                             </li>
@@ -1419,7 +1832,7 @@
                                     Contact: +91 4312 333333<br>
                                     Price: ₹2,500 - ₹3,500 per night<br>
                                 </div>
-                                <img src="https://th.bing.com/th/id/R.9183a229cc18aa8cf2470313a0f611fb?rik=UTRqAR5o1EYHNA&riu=http%3a%2f%2fkvmhotels.com%2fapps%2fimages%2fgallery_images%2f1.jpg&ehk=lZWwmuTeB8uxeXBpiVubzDsHaOSVs0G%2fhxu%2fTpbvPhs%3d&risl=&pid=ImgRaw&r=0"
+                                <img src="https://images.unsplash.com/photo-1551882547-ff40c0d589e4?auto=format&fit=crop&w=500&q=80"
                                     alt="KVM Hotels" class="image-container">
                             </li>
                             <li class="flex-container">
@@ -1542,12 +1955,12 @@
 
                 <div class="dropdown-item">
                     <input type="checkbox" id="faq-toggle-2" class="dropdown-toggle">
-                    <label for="faq-toggle-2" class="dropdown-button">What is the registration deadline? <span
+                    <label for="faq-toggle-2" class="dropdown-button">What is the full paper submission deadline? <span
                             class="arrow">&#9660;</span></label>
                     <div class="dropdown-content">
-                        <p>The registration deadline for the MSET2026 conference is August 15, 2026. Please make sure
-                            to
-                            register before this date to ensure your participation.</p>
+                        <p>The full paper submission deadline for the MSET2026 conference is August 31, 2026. Please
+                            make sure
+                            to submit your paper before this date.</p>
                     </div>
                 </div>
 
@@ -1563,12 +1976,10 @@
 
                 <div class="dropdown-item">
                     <input type="checkbox" id="faq-toggle-4" class="dropdown-toggle">
-                    <label for="faq-toggle-4" class="dropdown-button">Can I submit an abstract for presentation? <span
-                            class="arrow">&#9660;</span></label>
+                    <label for="faq-toggle-4" class="dropdown-button">When will I receive my acceptance notification?
+                        <span class="arrow">&#9660;</span></label>
                     <div class="dropdown-content">
-                        <p>Yes, abstract submissions are welcome for the MSET2026 conference. The deadline for abstract
-                            submission is July 31, 2026. Please visit the conference website for guidelines and
-                            submission details.</p>
+                        <p>Acceptance notifications will be sent to authors on September 16, 2026.</p>
                     </div>
                 </div>
 
@@ -1657,7 +2068,6 @@
                         <h4>Important Links</h4>
                         <ul>
                             <li><a href="mset2026.html">MSET-2026</a></li>
-                            <li><a href="sponsors.html">Sponsors</a></li>
                             <li><a href="venue.html">Venue Information</a></li>
                             <li><a href="jointheday.html">Join the Day</a></li>
                             <li><a href="faq.html">FAQ</a></li>
@@ -1669,7 +2079,7 @@
                         <h4>Gallery</h4>
                         <ul>
                             <li><a href="upcoming_events.html">Upcoming Events</a></li>
-                            <li><a href="past_events.html">Past Events</a></li>
+                            <li><a href="past_events.html">MSET 2025</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
                         </ul>
                     </div>

@@ -1,4 +1,8 @@
 function updateCountdown() {
+    const daysEl = document.getElementById("days");
+    const countdownEl = document.getElementById("countdown");
+    if (!countdownEl && !daysEl) return;
+
     const eventDate = new Date("September 24, 2026 10:00:00").getTime();
     const now = new Date().getTime();
     const timeLeft = eventDate - now;
@@ -9,12 +13,16 @@ function updateCountdown() {
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById("days").textContent = days.toString().padStart(2, '0');
-        document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-        document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-        document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+        if (daysEl) {
+            daysEl.textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+        }
     } else {
-        document.getElementById("countdown").innerHTML = "<p>The event has started!</p>";
+        if (countdownEl) {
+            countdownEl.innerHTML = "<p>The event has started!</p>";
+        }
     }
 }
 
@@ -54,7 +62,7 @@ function closeLightbox() {
 }
 
 // Close lightbox when clicking outside the image
-window.addEventListener("click", function(event) {
+window.addEventListener("click", function (event) {
     const modal = document.getElementById('lightbox-modal');
     if (event.target === modal) {
         modal.style.display = "none";
