@@ -325,3 +325,20 @@ window.addEventListener("click", function (event) {
 
     document.addEventListener('DOMContentLoaded', initGallerySlider);
 })();
+
+// Footer subscribe handler: open Google Form in a new tab (keeps the UI in footer)
+function handleFooterSubscribe(event) {
+    event.preventDefault();
+    const form = event.target;
+    try {
+        const name = form.querySelector('input[name="name"]').value;
+        const email = form.querySelector('input[name="email"]').value;
+        const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdsY02udDq546lfrgro6P4kCpepyahtXijUjj2pTXMga7NLAw/viewform?usp=publish-editor';
+        window.open(url, '_blank', 'noopener');
+        form.reset();
+    } catch (err) {
+        console.error('Subscribe handler error', err);
+    }
+    return false;
+}
+window.handleFooterSubscribe = handleFooterSubscribe;

@@ -1992,7 +1992,11 @@
                     <h3>Dhanalakshmi Srinivasan<br>University</h3>
                     <div class="footer-newsletter">
                         <div class="footer-newsletter">
-                                <a class="subscribe-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdsY02udDq546lfrgro6P4kCpepyahtXijUjj2pTXMga7NLAw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Subscribe</a>
+                                <form class="footer-subscribe" onsubmit="return handleFooterSubscribe(event)">
+                                    <input type="text" name="name" placeholder="Your Name" required />
+                                    <input type="email" name="email" placeholder="Your Email" required />
+                                    <button type="submit">Subscribe</button>
+                                </form>
                             </div>
                     </div>
                     <div class="footer-social">
