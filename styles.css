@@ -418,11 +418,12 @@ body {
 }
 
 span {
-    color: #e58b23;
+    color: inherit;
 }
 
 strong {
-    color: gold;
+    color: #001C4F;
+    font-weight: 700;
 }
 
 /*Banner 2*/
@@ -747,6 +748,11 @@ strong {
     color: #333;
     max-width: 860px;
     margin: 0 auto;
+}
+
+.invitation-content strong {
+    color: #001C4F;
+    font-weight: 700;
 }
 
 .invitation-content p {
@@ -1515,7 +1521,6 @@ hr {
     height: 240px;
     object-fit: cover;
     border-radius: 8px;
-
 }
 
 .member-info strong {
@@ -1523,6 +1528,8 @@ hr {
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 5px;
     padding-bottom: 5px;
+    display: block;
+    white-space: nowrap;
 }
 
 /* Text Styling */
@@ -1530,9 +1537,15 @@ hr {
 .member-info {
     margin-top: 2px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-left: 20px;
     font-size: 18px;
     font-weight: 500;
+    text-align: center;
+    width: 100%;
+}
+
+.committee-member .member-img + .member-info {
+    margin-left: 20px;
+    text-align: left;
 }
 
 /* Grid Layout for Team Members */
@@ -1545,8 +1558,32 @@ hr {
 }
 
 .team-grid .committee-member {
-    flex: 1 1 280px;
-    max-width: 320px;
+    flex: 0 1 auto;
+    min-width: 320px;
+    max-width: 380px;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Organising & Technical Committee — strict 3-column CSS grid */
+.organising-technical-chair-section .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: stretch;
+}
+
+.organising-technical-chair-section .team-grid .committee-member {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+    flex: unset;
+}
+
+@media (max-width: 1024px) {
+    .organising-technical-chair-section .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .chair-cochair-container {
@@ -1994,15 +2031,24 @@ hr {
     color: #FF9F00;
     font-weight: 600;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
-    gap: 8px;
+    gap: 4px 10px;
 }
 
 .footer-credits .credit-separator {
     color: #FF9F00;
-    opacity: 0.9;
+    opacity: 0.7;
+    display: inline;
+}
+
+.footer-credits a {
+    display: inline;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 1.5px;
 }
 
 .footer-bottom a {
@@ -2043,21 +2089,6 @@ hr {
 
     .footer-school-info h3 {
         text-align: left;
-    }
-
-    .footer-credits {
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-    }
-
-    .footer-credits .credit-separator {
-        display: none;
-    }
-
-    .footer-credits a {
-        display: block;
-        text-align: center;
     }
 }
 
@@ -2103,24 +2134,7 @@ hr {
     }
 
     .footer-credits {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 6px;
         line-height: 1.8;
-    }
-
-    .footer-credits a {
-        display: block;
-        width: 100%;
-        text-align: center;
-        font-size: 15px;
-        letter-spacing: 1px;
-    }
-
-    .footer-credits .credit-separator {
-        display: none !important;
     }
 
     .footer-bottom p {
